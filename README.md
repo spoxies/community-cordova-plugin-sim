@@ -1,9 +1,11 @@
-# cordova-plugin-sim
+#### This is a fork of the original plugin community-cordova-plugin-sim
+Android:
+all functions that need PHONE_STATE permission have been removed, the rest are supported.
 
-[![npm](https://img.shields.io/npm/v/cordova-plugin-sim.svg)](https://www.npmjs.com/package/cordova-plugin-sim)
-[![Code Climate](https://codeclimate.com/github/pbakondy/cordova-plugin-sim/badges/gpa.svg)](https://codeclimate.com/github/pbakondy/cordova-plugin-sim)
-![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20windows-lightgrey.svg)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R7STJ6V2PNEMA)
+# community-cordova-plugin-sim
+
+[![NPM version](https://img.shields.io/npm/v/community-cordova-plugin-sim)](https://www.npmjs.com/package/community-cordova-plugin-sim)
+[![Downloads](https://img.shields.io/npm/dm/community-cordova-plugin-sim)](https://www.npmjs.com/package/community-cordova-plugin-sim)
 
 This is a cordova plugin to get data from the SIM card like the carrier name, mcc, mnc and country code and other system dependent additional info.
 
@@ -11,7 +13,7 @@ This is a cordova plugin to get data from the SIM card like the carrier name, mc
 ## Installation
 
 ```
-cordova plugin add cordova-plugin-sim
+cordova plugin add community-cordova-plugin-sim
 ```
 
 ## Supported Platforms

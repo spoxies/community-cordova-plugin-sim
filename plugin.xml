@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  id="cordova-plugin-sim"
+  id="community-cordova-plugin-sim"
   version="1.3.3">
   <name>SIM</name>
   <description>A plugin to get the device's SIM data (carrier name, mcc mnc, country code, telephonenumber, imei, etc)</description>
   <license>MIT</license>
   <keywords>cordova,sim,carrier,mcc,mnc,telephonenumber</keywords>
-  <repo>https://github.com/pbakondy/cordova-plugin-sim</repo>
+  <repo>https://github.com/EYALIN/community-cordova-plugin-sim/issues</repo>
   <issue>https://github.com/pbakondy/cordova-plugin-sim/issues</issue>
 
   <engines>
@@ -25,10 +25,6 @@
       <feature name="Sim">
         <param name="android-package" value="com.pbakondy.Sim"/>
       </feature>
-    </config-file>
-
-    <config-file target="AndroidManifest.xml" parent="/*">
-      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     </config-file>
 
     <source-file src="src/android/com/pbakondy/Sim.java" target-dir="src/com/pbakondy" />
