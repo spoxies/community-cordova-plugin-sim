@@ -17,39 +17,62 @@
 
 - (void)getSimInfo:(CDVInvokedUrlCommand*)command
 {
-  CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
-  CTCarrier *carrier = [netinfo subscriberCellularProvider];
+ 
+    BOOL allowsVOIPResult = false;
+    
+    NSString *carrierNameResult = @"";
+    NSString *carrierCodeResult = @"";
+    NSString *carrierNetworkResult = @"";
+    NSString *carrierCountryResult = @"";;
+    
+    if (@available(iOS 16.0, *)) {
+        carrierNameResult = @"Deprecated API";
 
-  BOOL allowsVOIPResult = [carrier allowsVOIP];
-  NSString *carrierNameResult = [carrier carrierName];
-  NSString *carrierCountryResult = [carrier isoCountryCode];
-  NSString *carrierCodeResult = [carrier mobileCountryCode];
-  NSString *carrierNetworkResult = [carrier mobileNetworkCode];
+        NSLocale *countryLocale = [NSLocale currentLocale];
+        carrierCountryResult = [countryLocale objectForKey:NSLocaleCountryCode];
 
-  if (!carrierNameResult) {
-    carrierNameResult = @"";
-  }
-  if (!carrierCountryResult) {
-    carrierCountryResult = @"";
-  }
-  if (!carrierCodeResult) {
-    carrierCodeResult = @"";
-  }
-  if (!carrierNetworkResult) {
-    carrierNetworkResult = @"";
-  }
+        
+        
+    }else{
+        
+        NSDictionary<NSString *, CTCarrier *> *providers= [[CTTelephonyNetworkInfo new]  serviceSubscriberCellularProviders];
+           
+        CTCarrier *carrier = providers.allValues.firstObject;
 
-  NSDictionary *simData = [NSDictionary dictionaryWithObjectsAndKeys:
-    @(allowsVOIPResult), @"allowsVOIP",
-    carrierNameResult, @"carrierName",
-    carrierCountryResult, @"countryCode",
-    carrierCodeResult, @"mcc",
-    carrierNetworkResult, @"mnc",
-    nil];
+        allowsVOIPResult = [carrier allowsVOIP];
+        carrierNameResult = [carrier carrierName];
+        carrierCountryResult = [carrier isoCountryCode];
+        carrierCodeResult = [carrier mobileCountryCode];
+        carrierNetworkResult = [carrier mobileNetworkCode];
 
-  CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:simData];
+        if (!carrierNameResult) {
+          carrierNameResult = @"";
+        }
+        if (!carrierCountryResult) {
+          carrierCountryResult = @"";
+        }
+        if (!carrierCodeResult) {
+          carrierCodeResult = @"";
+        }
+        if (!carrierNetworkResult) {
+          carrierNetworkResult = @"";
+        }
+    }
+    
 
-  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    
+    NSDictionary *simData = [NSDictionary dictionaryWithObjectsAndKeys:
+      @(allowsVOIPResult), @"allowsVOIP",
+      carrierNameResult, @"carrierName",
+      carrierCountryResult, @"countryCode",
+      carrierCodeResult, @"mcc",
+      carrierNetworkResult, @"mnc",
+      nil];
+    
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:simData];
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
 }
 
 @end
