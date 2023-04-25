@@ -25,7 +25,7 @@
     NSString *carrierNetworkResult = @"";
     NSString *carrierCountryResult = @"";;
     
-    if (@available(iOS 16.0, *)) {
+    if (@available(iOS 16.3, *)) {
         carrierNameResult = @"Deprecated API";
 
         NSLocale *countryLocale = [NSLocale currentLocale];
